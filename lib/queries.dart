@@ -5,9 +5,6 @@ const readSongName = '''
       edges{
         node{
           title
-          songDetails{
-            songInMalayalam
-          }
         }
       }
     }

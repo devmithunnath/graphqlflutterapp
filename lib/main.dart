@@ -48,7 +48,7 @@ class _WrapperState extends State<Wrapper> {
       body: Container(
         child: Query(
           options: QueryOptions(
-            document: queries.readSongName,
+            document: queries.getAllSongsTitle,
             pollInterval: 4,
           ),
           builder: (QueryResult result, { VoidCallback refetch, FetchMore fetchMore }){
@@ -72,7 +72,7 @@ class _WrapperState extends State<Wrapper> {
               itemCount: pls.length,
               itemBuilder: (BuildContext context, int index){
                 final Map<String, dynamic> pl = pls[index];
-                final String name = pl["node"]["songDetails"]["songInMalayalam"];
+                final String name = pl["node"]["songDetails"]["nameEnglish"];
 
                 return ListTile(
                   title: Text('$name'),
