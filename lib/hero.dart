@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 //Hero Animator Class
 
 class HeroAnimator extends StatelessWidget {
+
+  final List<String> listData = ['Data One', 'Data Two', 'Data Three', 'Data Four', 'Data Five'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import './queries.dart' as queries;
 import './hero.dart';
+import './list.dart';
 
 void main() => runApp(GraphQLApp());
 
@@ -26,7 +27,9 @@ class GraphQLApp extends StatelessWidget {
       child: CacheProvider(
         child: MaterialApp(
           title: 'LYRICHORDS',
-          home: HeroAnimator(),
+          home: Container(
+            child: Wrapper(),
+          ),
         ),
       ),
     );
