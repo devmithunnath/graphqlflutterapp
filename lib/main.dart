@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:graphqlapp/screens/CurvedNav.dart';
 import './queries.dart' as queries;
 import './hero.dart';
 import './list.dart';
+import './screens/Nav.dart';
 
 void main() => runApp(GraphQLApp());
 
@@ -27,8 +29,11 @@ class GraphQLApp extends StatelessWidget {
       child: CacheProvider(
         child: MaterialApp(
           title: 'LYRICHORDS',
+          theme: ThemeData(
+            fontFamily: 'Montserrat'
+          ),
           home: Container(
-            child: Wrapper(),
+            child: CurvedNav(),
           ),
         ),
       ),

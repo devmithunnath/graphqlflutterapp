@@ -12,7 +12,7 @@ class HeroAnimator extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Hero Animation'),
         backgroundColor: Colors.lightBlueAccent,
-        elevation: 0,
+        elevation: 2,
       ),
       body: Center(
         child: HeroItem(
