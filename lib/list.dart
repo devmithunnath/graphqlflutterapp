@@ -3,24 +3,9 @@ import 'package:flutter/material.dart';
 class ListWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Center(
-            child: Text(
-              'LYRICHORDS',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 25.0,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-          ),
-        ),
-        body: ListView(
+    return ListView(
           children: <Widget>[
-            Heading(
+            Heading1(
               title: 'Latest Movies',
             ),
             ListWidget(),
@@ -31,14 +16,14 @@ class ListWrapper extends StatelessWidget {
             // Heading(title: 'Melodies',),
             // ListWidget(),
           ],
-        ));
+        );
   }
 }
 
-class Heading extends StatelessWidget {
+class Heading1 extends StatelessWidget {
   final String title;
 
-  const Heading({this.title});
+  const Heading1({this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +32,8 @@ class Heading extends StatelessWidget {
       child: Text(title,
           style: TextStyle(
             color: Colors.black,
-            fontSize: 22.0,
-            fontWeight: FontWeight.w300,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w700,
           )),
     );
   }
