@@ -19,10 +19,26 @@ class MovieHome extends StatelessWidget {
                   tag: name,
                   child: Material(
                     color: Colors.transparent,
-                    child: InkWell(
-                        onTap: () {},
-                        child: Image.asset('assets/odiyan.png',
-                            fit: BoxFit.cover)),
+                    child: Container(
+                      child: Center(
+                        child: Text('Odiyan', style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0
+                        ),),
+                      ),
+                      height: 150.0,
+                      width: MediaQuery.of(context).size.width - 100.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new NetworkImage(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHwknZh-uDw3UIc2mIOTils67AIhyRbFYmGGRekI7uvV3SOGF26g"),
+                              fit: BoxFit.cover)),
+                    ),
+                    // child: InkWell(
+                    //     onTap: () {},
+                    //     child: Image.asset('assets/odiyan.png',
+                    //         fit: BoxFit.cover)),
                   ),
                 ),
               ),
@@ -39,4 +55,3 @@ class MovieHome extends StatelessWidget {
         ));
   }
 }
-

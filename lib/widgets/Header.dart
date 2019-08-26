@@ -5,11 +5,11 @@ import 'package:graphqlapp/widgets/AppTitle.dart';
 class Header {
   getHeader(BuildContext context) {
     return AppBar(
+      centerTitle: true, 
       iconTheme: IconThemeData(
-        color: Colors.white, //change your color here
+        color: Colors.black, //change your color here
       ),
       backgroundColor: Colors.white,
-      centerTitle: true, 
       title: AppTitle(),
       elevation: 0.0,
       // actions: <Widget>[
