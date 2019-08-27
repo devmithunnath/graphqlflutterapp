@@ -48,6 +48,9 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+
+  final dynamic testQuery = queries.getAllSongsTitle;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +60,7 @@ class _WrapperState extends State<Wrapper> {
       body: Container(
         child: Query(
           options: QueryOptions(
-            document: queries.getAllSongsTitle,
+            document: testQuery,
             pollInterval: 4,
           ),
           builder: (QueryResult result, { VoidCallback refetch, FetchMore fetchMore }){

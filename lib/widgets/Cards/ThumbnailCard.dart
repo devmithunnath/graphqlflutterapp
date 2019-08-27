@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import './../../screens/MovieHome.dart';
 
 class ThumbnailCard extends StatelessWidget {
+
+  final String image;
   final String name;
-  const ThumbnailCard({this.name});
+  const ThumbnailCard({this.name, this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +32,19 @@ class ThumbnailCard extends StatelessWidget {
               ),
             ],
             image: DecorationImage(
-              image: ExactAssetImage('assets/odiyan.png'),
-              fit: BoxFit.cover,
+              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.softLight),
+              //image: ExactAssetImage('assets/odiyan.png'),
+              image: new NetworkImage(image),
+              fit: BoxFit.cover),
             ),
-            border: Border.all(
-              color: Colors.black,
-              width: 1.0,
-            ),
+            // border: Border.all(
+            //   color: Colors.black,
+            //   width: 1.0,
+            // ),
+          margin: EdgeInsets.symmetric(horizontal: 10.0),            
           ),
-          margin: EdgeInsets.symmetric(horizontal: 10.0),
           //child: Text(name, style: TextStyle(color: Colors.white),),
         ),
-      ),
-    );
+      );
   }
 }

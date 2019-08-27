@@ -15,13 +15,15 @@ const readSongName = '''
 
 const getAllSongsTitle = '''
   query getAllSongsTitle {
-    songs{
-      edges{
-        node{
-          songId
-          songDetails{
+    songs {
+      edges {
+        node {
+          songDetails {
             nameEnglish
             nameMalayalam
+            coverImageMobile {
+              sourceUrl
+            }
           }
         }
       }
