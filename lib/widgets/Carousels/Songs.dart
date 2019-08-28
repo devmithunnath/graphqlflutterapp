@@ -19,20 +19,12 @@ class SongsCarousel extends StatefulWidget {
 
 class _SongsCarouselState extends State<SongsCarousel> {
 
-  final List<String> listData = [
-    'Data One',
-    'Data Two',
-    'Data Three',
-    'Data Four',
-    'Data Five'
-  ];
-
   final dynamic testQuery = queries.getAllSongsTitle;
   
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180.0,
+      height: 200.0,
       padding: EdgeInsets.only(top: 10.0),
       child: Query(
         options: QueryOptions(
@@ -60,14 +52,6 @@ class _SongsCarouselState extends State<SongsCarousel> {
                 final Map<String, dynamic> pl = pls[index];
                 final String name = pl["node"]["songDetails"]["nameEnglish"];
                 final String image = pl["node"]["songDetails"]["coverImageMobile"]["sourceUrl"];
-                // return ListTile(
-                //   title: Text('$name'),
-                //   trailing: Icon(Icons.thumb_up),
-                //   onTap: (){},
-                // );
-
-                print('Testing Image: ---------------------'+image);
-
                 return new ThumbnailCard(
                   image: image,
                   name: name,
@@ -78,15 +62,6 @@ class _SongsCarouselState extends State<SongsCarousel> {
 
         },
       ),
-      // child: ListView.builder(
-      //   scrollDirection: Axis.horizontal,
-      //   itemCount: listData.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return new ThumbnailCard(
-      //       name: listData[index],
-      //     );
-      //   },
-      // ),
     );
   }
 }
