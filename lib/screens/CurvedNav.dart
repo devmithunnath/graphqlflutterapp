@@ -31,7 +31,7 @@ class _CurvedNavState extends State<CurvedNav> {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         color: Colors.black87,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         height: 55.0,
         items: <Widget>[
           Icon(Icons.home, size: 30, color: Colors.white,),

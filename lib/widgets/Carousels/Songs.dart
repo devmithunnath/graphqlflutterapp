@@ -19,7 +19,7 @@ class SongsCarousel extends StatefulWidget {
 
 class _SongsCarouselState extends State<SongsCarousel> {
 
-  final dynamic testQuery = queries.getAllSongsTitle;
+  final dynamic testQuery = queries.getAllSongsEN; 
   
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,11 @@ class _SongsCarouselState extends State<SongsCarousel> {
                 final Map<String, dynamic> pl = pls[index];
                 final String name = pl["node"]["songDetails"]["nameEnglish"];
                 final String image = pl["node"]["songDetails"]["coverImageMobile"]["sourceUrl"];
+                final String id = pl["node"]["id"];
                 return new ThumbnailCard(
                   image: image,
                   name: name,
+                  id: id,
                 );
 
               },

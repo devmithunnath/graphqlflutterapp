@@ -49,7 +49,7 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> {
 
-  final dynamic testQuery = queries.getAllSongsTitle;
+  final dynamic testQuery = queries.getAllSongsEN;
 
   @override
   Widget build(BuildContext context) {

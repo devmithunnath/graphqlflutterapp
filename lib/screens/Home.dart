@@ -18,11 +18,8 @@ class Home extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           children: <Widget>[
             TileNav(),
-            TileNav(),
             Heading(title: 'Latest Songs', align: TextAlign.left,),
             SongsCarousel(),
-            // Heading(title: 'Test Card', align: TextAlign.left,),
-            // TestCard(),
           ],
         ));
   }

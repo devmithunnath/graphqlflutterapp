@@ -1,25 +1,12 @@
-// Sample Query 
-const readSongName = '''
-  query readSongName {
-    songs{
-      edges{
-        node{
-          title
-        }
-      }
-    }
-  }
-''';
+//Get All Song Title & ID and Images in Malayalam and English
 
-//Get All Song Title & ID (both Malayalam and English)
-
-const getAllSongsTitle = '''
+const getAllSongsMA = '''
   query getAllSongsTitle {
     songs {
       edges {
         node {
+          id
           songDetails {
-            nameEnglish
             nameMalayalam
             coverImageMobile {
               sourceUrl
@@ -31,26 +18,18 @@ const getAllSongsTitle = '''
   }
 ''';
 
-// Get All Song Title & and Image
+// English version query
 
-const getAllSongsTitleAndImage = '''
-  query getAllSongsTitleAndImage {
+const getAllSongsEN = '''
+  query getAllSongsTitle {
     songs {
       edges {
         node {
-          songId
+          id
           songDetails {
             nameEnglish
-            nameMalayalam
-            movie {
-              ... on Movie {
-                id
-                movieDetails {
-                  images {
-                    link
-                  }
-                }
-              }
+            coverImageMobile {
+              sourceUrl
             }
           }
         }
@@ -59,7 +38,20 @@ const getAllSongsTitleAndImage = '''
   }
 ''';
 
-// Get complete Song details
+// Get Song Details in Malayalam
 
-const getCompleteSongDetails = '''
+const getSongDetailsMA = '''
+  query getSongDetailsMA {
+    song(id: "153") {
+      songDetails {
+        coverImageMobile {
+          sourceUrl
+        }
+        nameEnglish
+        nameMalayalam
+        songEnglish
+        songMalayalam
+      }
+    }
+  }
 ''';
