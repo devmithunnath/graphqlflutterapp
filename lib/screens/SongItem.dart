@@ -13,17 +13,69 @@ class SongItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dynamic getSongDetails = '''
+    final dynamic getSongDetailsEN = '''
       query getSongDetailsMA {
         song(id: "$songId") {
           songDetails {
-            coverImageMobile {
-              sourceUrl
-            }
             nameEnglish
-            nameMalayalam
             songEnglish
-            songMalayalam
+            coverImageMobile {
+              sourceUrl(size: MEDIUM_LARGE)
+            }
+            movie {
+              ... on Movie {
+                id
+                movieDetails {
+                  nameEnglish
+                }
+              }
+            }
+            year {
+              ... on Year {
+                id
+                title
+              }
+            }
+            singers {
+              ... on Singer {
+                id
+                singerDetails {
+                  nameEnglish
+                }
+              }
+            }
+            ragas {
+              ... on Raga {
+                id
+                ragaDetails {
+                  nameEnglish
+                }
+              }
+            }
+            musicDirector {
+              ... on MusicDirector {
+                id
+                musicDirectorDetails {
+                  nameEnglish
+                }
+              }
+            }
+            movieDirector {
+              ... on MovieDirector {
+                id
+                movieDirectorDetails {
+                  nameEnglish
+                }
+              }
+            }
+            lyricist {
+              ... on Lyricist {
+                id
+                lyricistDetails {
+                  nameEnglish
+                }
+              }
+            }
           }
         }
       }
@@ -32,7 +84,7 @@ class SongItem extends StatelessWidget {
     return Scaffold(
       appBar: new Header().getHeader(context),
       body: Query(
-        options: QueryOptions(document: getSongDetails, pollInterval: 20),
+        options: QueryOptions(document: getSongDetailsEN, pollInterval: 20),
         builder: (QueryResult result,
             {VoidCallback refetch, FetchMore fetchMore}) {
           if (result.loading) {
@@ -45,10 +97,36 @@ class SongItem extends StatelessWidget {
             return Text('\nErrors:\n ' + result.errors.join(',\n '));
           }
 
+          // Padding 
+          EdgeInsets titlePadding = new EdgeInsets.only(left: 20.0, top: 5.0, bottom: 5.0);
+
+          // Song Title
+          String songTitle = result.data["song"]["songDetails"]["nameEnglish"];
+
+          // Song Lyrics
+          String songLyrics = result.data["song"]["songDetails"]["songEnglish"];
+
+          // Movie Name
+          String movieName = result.data["song"]["songDetails"]["movie"][0]["movieDetails"]["nameEnglish"];
+
+          // Movie Year
+          String movieYear = result.data["song"]["songDetails"]["year"][0]["title"];
+
+          // Music Director
+          String musicDirector = result.data["song"]["songDetails"]["musicDirector"][0]["musicDirectorDetails"]["nameEnglish"];
+
+          // Music Director
+          String movieDirector = result.data["song"]["songDetails"]["movieDirector"][0]["movieDirectorDetails"]["nameEnglish"];
+
+          // Lyricist
+          String lyricist = result.data["song"]["songDetails"]["lyricist"][0]["lyricistDetails"]["nameEnglish"];
+
+          // Singers
+          List<dynamic> singers = result.data["song"]["songDetails"]["singers"];
+
+          // Mobile Cover Image
           String heroImage = result.data["song"]["songDetails"]
               ["coverImageMobile"]["sourceUrl"];
-          String songTitle = result.data["song"]["songDetails"]["nameEnglish"];
-          String songLyrics = result.data["song"]["songDetails"]["songEnglish"];
 
           return ListView(
             children: <Widget>[
@@ -90,21 +168,89 @@ class SongItem extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 20.0,),
               Container(
-                padding: EdgeInsets.all(20.0),
+                padding: titlePadding,
                 child: Text(
                   'Song: ' + songTitle,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 22.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(20.0),
+                padding: titlePadding,
                 child: Text(
-                  'Lyrics\n\n' + songLyrics,
+                  'Movie: ' + movieName,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                padding: titlePadding,
+                child: Text(
+                  'Year: ' + movieYear,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                padding: titlePadding,
+                child: Text(
+                  'Movie Director: ' + movieDirector,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                padding: titlePadding,
+                child: Text(
+                  'Music Director: ' + musicDirector,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                padding: titlePadding,
+                child: Text(
+                  'Lyricist: ' + lyricist,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0,),
+              Container(
+                padding: titlePadding,
+                child: Text(
+                  'Song Lyrics',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                padding: titlePadding,
+                child: Text(
+                  songLyrics,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,

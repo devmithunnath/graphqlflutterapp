@@ -9,7 +9,7 @@ const getAllSongsMA = '''
           songDetails {
             nameMalayalam
             coverImageMobile {
-              sourceUrl
+              sourceUrl(size: THUMBNAIL)
             }
           }
         }
@@ -29,7 +29,7 @@ const getAllSongsEN = '''
           songDetails {
             nameEnglish
             coverImageMobile {
-              sourceUrl
+              sourceUrl(size: THUMBNAIL)
             }
           }
         }
