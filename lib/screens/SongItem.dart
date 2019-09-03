@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphqlapp/widgets/Header.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:graphqlapp/widgets/Texts/Heading.dart';
+import 'package:graphqlapp/widgets/Texts/Paragraph.dart';
 //import '../queries.dart' as queries;
 
 class SongItem extends StatelessWidget {
@@ -34,14 +36,6 @@ class SongItem extends StatelessWidget {
               ... on Year {
                 id
                 title
-              }
-            }
-            singers {
-              ... on Singer {
-                id
-                singerDetails {
-                  nameEnglish
-                }
               }
             }
             ragas {
@@ -101,28 +95,28 @@ class SongItem extends StatelessWidget {
           EdgeInsets titlePadding = new EdgeInsets.only(left: 20.0, top: 5.0, bottom: 5.0);
 
           // Song Title
-          String songTitle = result.data["song"]["songDetails"]["nameEnglish"];
+          String songTitle = ( result.data["song"]["songDetails"]["nameEnglish"] != null ) ? result.data["song"]["songDetails"]["nameEnglish"] : 'EMPTY';
 
           // Song Lyrics
-          String songLyrics = result.data["song"]["songDetails"]["songEnglish"];
+          String songLyrics = ( result.data["song"]["songDetails"]["songEnglish"] != null ) ? result.data["song"]["songDetails"]["songEnglish"] : 'EMPTY';
 
           // Movie Name
-          String movieName = result.data["song"]["songDetails"]["movie"][0]["movieDetails"]["nameEnglish"];
+          String movieName = ( result.data["song"]["songDetails"]["movie"] != null ) ? result.data["song"]["songDetails"]["movie"][0]["movieDetails"]["nameEnglish"] : 'EMPTY';
 
           // Movie Year
-          String movieYear = result.data["song"]["songDetails"]["year"][0]["title"];
+          String movieYear = ( result.data["song"]["songDetails"]["year"] != null ) ? result.data["song"]["songDetails"]["year"][0]["title"] : 'EMPTY';
 
           // Music Director
-          String musicDirector = result.data["song"]["songDetails"]["musicDirector"][0]["musicDirectorDetails"]["nameEnglish"];
+          String musicDirector = ( result.data["song"]["songDetails"]["musicDirector"] != null) ? result.data["song"]["songDetails"]["musicDirector"][0]["musicDirectorDetails"]["nameEnglish"] : 'EMPTY';
 
           // Music Director
-          String movieDirector = result.data["song"]["songDetails"]["movieDirector"][0]["movieDirectorDetails"]["nameEnglish"];
+          String movieDirector = ( result.data["song"]["songDetails"]["movieDirector"] != null ) ? result.data["song"]["songDetails"]["movieDirector"][0]["movieDirectorDetails"]["nameEnglish"] : 'EMPTY';
 
           // Lyricist
-          String lyricist = result.data["song"]["songDetails"]["lyricist"][0]["lyricistDetails"]["nameEnglish"];
+          String lyricist = ( result.data["song"]["songDetails"]["lyricist"] != null ) ? result.data["song"]["songDetails"]["lyricist"][0]["lyricistDetails"]["nameEnglish"] : 'EMPTY';
 
           // Singers
-          List<dynamic> singers = result.data["song"]["songDetails"]["singers"];
+          // List<dynamic> singers = result.data["song"]["songDetails"]["singers"];
 
           // Mobile Cover Image
           String heroImage = result.data["song"]["songDetails"]
@@ -169,95 +163,17 @@ class SongItem extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20.0,),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  'Song: ' + songTitle,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  'Movie: ' + movieName,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  'Year: ' + movieYear,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  'Movie Director: ' + movieDirector,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  'Music Director: ' + musicDirector,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  'Lyricist: ' + lyricist,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+              ( songTitle != 'EMPTY' ) ? Heading(title: 'Song: ' + songTitle, align: TextAlign.left, padding: titlePadding,): Container(),
+              ( movieName != 'EMPTY' ) ? Heading(title: 'Movie: ' + movieName, align: TextAlign.left, padding: titlePadding,): Container(),
+              ( movieYear != 'EMPTY' ) ? Heading(title: 'Year: ' + movieYear, align: TextAlign.left, padding: titlePadding,): Container(),
+              ( movieDirector != 'EMPTY' ) ? Heading(title: 'Movie Director: ' + movieDirector, align: TextAlign.left, padding: titlePadding,): Container(),
+              ( musicDirector != 'EMPTY' ) ? Heading(title: 'Music Director: ' + musicDirector, align: TextAlign.left, padding: titlePadding,): Container(),
+              ( lyricist != 'EMPTY' ) ? Heading(title: 'Lyricist: ' + lyricist, align: TextAlign.left, padding: titlePadding,): Container(),
               SizedBox(height: 20.0,),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  'Song Lyrics',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Container(
-                padding: titlePadding,
-                child: Text(
-                  songLyrics,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+              Heading(title: 'Song Lyrics', align: TextAlign.left, padding: titlePadding,),
+              ( songLyrics != 'EMPTY' ) 
+              ? Paragraph(title: songLyrics, align: TextAlign.left, padding: titlePadding,)
+              : Paragraph(title: 'Lyrics Not Found!', align: TextAlign.left, padding: titlePadding,),
             ],
           );
         },

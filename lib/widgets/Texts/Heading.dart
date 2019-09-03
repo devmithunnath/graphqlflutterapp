@@ -4,19 +4,20 @@ class Heading extends StatelessWidget {
 
   final String title;
   final TextAlign align;
+  final EdgeInsets padding;
 
-  const Heading({ this.title, this.align });
+  const Heading({ this.title, this.align, this.padding });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: padding,
       child: Text(title,
           textAlign: align,
           style: TextStyle(
             color: Colors.black,
             fontSize: 20.0,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           )),
     );
   }

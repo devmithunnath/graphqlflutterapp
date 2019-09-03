@@ -61,13 +61,9 @@ class _ThumbnailCardState extends State<ThumbnailCard> {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10)),
-                    // image: DecorationImage(
-                    //     image: new NetworkImage('https://c7.uihere.com/files/620/154/523/wind-wave-euclidean-vector-wave-vector-sea-background-with-abstract-waves.jpg'),
-                    //     fit: BoxFit.cover),
                   ),
                   height: 60.0,
                   width: 170.0,
-                  //color: Colors.green[500],
                   child: Center(
                     child: Text(
                       widget.name,
