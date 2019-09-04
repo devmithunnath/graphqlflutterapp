@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:graphqlapp/widgets/AppTitle.dart';
 
 //mobx store
@@ -19,11 +18,7 @@ class Header {
       title: AppTitle(),
       elevation: 0.0,
       actions: <Widget>[
-        Observer(
-          builder: (_)=> Text(
-            '${lang.lang}', style: TextStyle(color: Colors.black),
-          ),
-        ),
+        
         IconButton(
           icon: Icon(Icons.tune, size: 30, color: Colors.black),
           onPressed: (){

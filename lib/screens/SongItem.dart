@@ -3,6 +3,9 @@ import 'package:graphqlapp/widgets/Header.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:graphqlapp/widgets/Texts/Heading.dart';
 import 'package:graphqlapp/widgets/Texts/Paragraph.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import './../store/language.dart';
+
 //import '../queries.dart' as queries;
 
 class SongItem extends StatelessWidget {
@@ -12,15 +15,19 @@ class SongItem extends StatelessWidget {
   final String songId;
 
   //final dynamic getSongDetails = queries.getSongDetailsMA;
+  final Language lang = Language();
 
   @override
   Widget build(BuildContext context) {
+
     final dynamic getSongDetailsEN = '''
       query getSongDetailsMA {
         song(id: "$songId") {
           songDetails {
             nameEnglish
+            nameMalayalam
             songEnglish
+            songMalayalam
             coverImageMobile {
               sourceUrl(size: MEDIUM_LARGE)
             }
@@ -29,6 +36,7 @@ class SongItem extends StatelessWidget {
                 id
                 movieDetails {
                   nameEnglish
+                  nameMalayalam
                 }
               }
             }
@@ -38,11 +46,21 @@ class SongItem extends StatelessWidget {
                 title
               }
             }
+            singers {
+              ... on Singer {
+                id
+                singerDetails {
+                  nameEnglish
+                  nameMalayalam
+                }
+              }
+            }
             ragas {
               ... on Raga {
                 id
                 ragaDetails {
                   nameEnglish
+                  nameMalayalam
                 }
               }
             }
@@ -51,6 +69,7 @@ class SongItem extends StatelessWidget {
                 id
                 musicDirectorDetails {
                   nameEnglish
+                  nameMalayalam
                 }
               }
             }
@@ -59,6 +78,7 @@ class SongItem extends StatelessWidget {
                 id
                 movieDirectorDetails {
                   nameEnglish
+                  nameMalayalam
                 }
               }
             }
@@ -67,7 +87,13 @@ class SongItem extends StatelessWidget {
                 id
                 lyricistDetails {
                   nameEnglish
+                  nameMalayalam
                 }
+              }
+            }
+            casts {
+              ... on Cast {
+                id
               }
             }
           }
@@ -91,29 +117,60 @@ class SongItem extends StatelessWidget {
             return Text('\nErrors:\n ' + result.errors.join(',\n '));
           }
 
-          // Padding 
-          EdgeInsets titlePadding = new EdgeInsets.only(left: 20.0, top: 5.0, bottom: 5.0);
+          // Padding
+          EdgeInsets titlePadding =
+              new EdgeInsets.only(left: 20.0, top: 5.0, bottom: 5.0);
 
           // Song Title
-          String songTitle = ( result.data["song"]["songDetails"]["nameEnglish"] != null ) ? result.data["song"]["songDetails"]["nameEnglish"] : 'EMPTY';
+          String songTitleEN =
+              (result.data["song"]["songDetails"]["nameEnglish"] != null)
+                  ? result.data["song"]["songDetails"]["nameEnglish"]
+                  : 'EMPTY';
+
+          String songTitleMA =
+              (result.data["song"]["songDetails"]["nameMalayalam"] != null)
+                  ? result.data["song"]["songDetails"]["nameMalayalam"]
+                  : 'EMPTY';
 
           // Song Lyrics
-          String songLyrics = ( result.data["song"]["songDetails"]["songEnglish"] != null ) ? result.data["song"]["songDetails"]["songEnglish"] : 'EMPTY';
+          String songLyrics =
+              (result.data["song"]["songDetails"]["songEnglish"] != null)
+                  ? result.data["song"]["songDetails"]["songEnglish"]
+                  : 'EMPTY';
 
           // Movie Name
-          String movieName = ( result.data["song"]["songDetails"]["movie"] != null ) ? result.data["song"]["songDetails"]["movie"][0]["movieDetails"]["nameEnglish"] : 'EMPTY';
+          String movieName =
+              (result.data["song"]["songDetails"]["movie"] != null)
+                  ? result.data["song"]["songDetails"]["movie"][0]
+                      ["movieDetails"]["nameEnglish"]
+                  : 'EMPTY';
 
           // Movie Year
-          String movieYear = ( result.data["song"]["songDetails"]["year"] != null ) ? result.data["song"]["songDetails"]["year"][0]["title"] : 'EMPTY';
+          String movieYear =
+              (result.data["song"]["songDetails"]["year"] != null)
+                  ? result.data["song"]["songDetails"]["year"][0]["title"]
+                  : 'EMPTY';
 
           // Music Director
-          String musicDirector = ( result.data["song"]["songDetails"]["musicDirector"] != null) ? result.data["song"]["songDetails"]["musicDirector"][0]["musicDirectorDetails"]["nameEnglish"] : 'EMPTY';
+          String musicDirector =
+              (result.data["song"]["songDetails"]["musicDirector"] != null)
+                  ? result.data["song"]["songDetails"]["musicDirector"][0]
+                      ["musicDirectorDetails"]["nameEnglish"]
+                  : 'EMPTY';
 
           // Music Director
-          String movieDirector = ( result.data["song"]["songDetails"]["movieDirector"] != null ) ? result.data["song"]["songDetails"]["movieDirector"][0]["movieDirectorDetails"]["nameEnglish"] : 'EMPTY';
+          String movieDirector =
+              (result.data["song"]["songDetails"]["movieDirector"] != null)
+                  ? result.data["song"]["songDetails"]["movieDirector"][0]
+                      ["movieDirectorDetails"]["nameEnglish"]
+                  : 'EMPTY';
 
           // Lyricist
-          String lyricist = ( result.data["song"]["songDetails"]["lyricist"] != null ) ? result.data["song"]["songDetails"]["lyricist"][0]["lyricistDetails"]["nameEnglish"] : 'EMPTY';
+          String lyricist =
+              (result.data["song"]["songDetails"]["lyricist"] != null)
+                  ? result.data["song"]["songDetails"]["lyricist"][0]
+                      ["lyricistDetails"]["nameEnglish"]
+                  : 'EMPTY';
 
           // Singers
           // List<dynamic> singers = result.data["song"]["songDetails"]["singers"];
@@ -135,7 +192,7 @@ class SongItem extends StatelessWidget {
                       child: Container(
                         child: Center(
                           child: Text(
-                            songTitle,
+                            songTitleEN,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -162,18 +219,82 @@ class SongItem extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0,),
-              ( songTitle != 'EMPTY' ) ? Heading(title: 'Song: ' + songTitle, align: TextAlign.left, padding: titlePadding,): Container(),
-              ( movieName != 'EMPTY' ) ? Heading(title: 'Movie: ' + movieName, align: TextAlign.left, padding: titlePadding,): Container(),
-              ( movieYear != 'EMPTY' ) ? Heading(title: 'Year: ' + movieYear, align: TextAlign.left, padding: titlePadding,): Container(),
-              ( movieDirector != 'EMPTY' ) ? Heading(title: 'Movie Director: ' + movieDirector, align: TextAlign.left, padding: titlePadding,): Container(),
-              ( musicDirector != 'EMPTY' ) ? Heading(title: 'Music Director: ' + musicDirector, align: TextAlign.left, padding: titlePadding,): Container(),
-              ( lyricist != 'EMPTY' ) ? Heading(title: 'Lyricist: ' + lyricist, align: TextAlign.left, padding: titlePadding,): Container(),
-              SizedBox(height: 20.0,),
-              Heading(title: 'Song Lyrics', align: TextAlign.left, padding: titlePadding,),
-              ( songLyrics != 'EMPTY' ) 
-              ? Paragraph(title: songLyrics, align: TextAlign.left, padding: titlePadding,)
-              : Paragraph(title: 'Lyrics Not Found!', align: TextAlign.left, padding: titlePadding,),
+              SizedBox(
+                height: 20.0,
+              ),
+              Observer(
+                  builder: (_) => (lang.lang == 'en') 
+                  ? Text('en')
+                  : Text('ma'),
+              ),
+                      // ? (songTitleEN != 'EMPTY')
+                      //     ? Heading(
+                      //         title: 'Song: ' + songTitleEN,
+                      //         align: TextAlign.left,
+                      //         padding: titlePadding,
+                      //       )
+                      //     : Container()
+                      // : (songTitleMA != 'EMPTY')
+                      //     ? Heading(
+                      //         title: 'Song: ' + songTitleMA,
+                      //         align: TextAlign.left,
+                      //         padding: titlePadding,
+                      //       )
+                      //     : Container())),
+              (movieName != 'EMPTY')
+                  ? Heading(
+                      title: 'Movie: ' + movieName,
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    )
+                  : Container(),
+              (movieYear != 'EMPTY')
+                  ? Heading(
+                      title: 'Year: ' + movieYear,
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    )
+                  : Container(),
+              (movieDirector != 'EMPTY')
+                  ? Heading(
+                      title: 'Movie Director: ' + movieDirector,
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    )
+                  : Container(),
+              (musicDirector != 'EMPTY')
+                  ? Heading(
+                      title: 'Music Director: ' + musicDirector,
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    )
+                  : Container(),
+              (lyricist != 'EMPTY')
+                  ? Heading(
+                      title: 'Lyricist: ' + lyricist,
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    )
+                  : Container(),
+              SizedBox(
+                height: 20.0,
+              ),
+              Heading(
+                title: 'Song Lyrics',
+                align: TextAlign.left,
+                padding: titlePadding,
+              ),
+              (songLyrics != 'EMPTY')
+                  ? Paragraph(
+                      title: songLyrics,
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    )
+                  : Paragraph(
+                      title: 'Lyrics Not Found!',
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    ),
             ],
           );
         },
