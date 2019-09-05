@@ -26,7 +26,10 @@ dependencies:
   graphql_flutter: ^2.0.0
   curved_navigation_bar: ^0.3.0 
   shared_preferences: ^0.5.3+4
-  fancy_dialog: ^1.0.1
+  easy_dialog: 
+  flutter_bloc: ^0.15.1
+  equatable: ^0.2.6
+  timeline_list: ^0.0.3
 
   mobx: ^0.3.7
   flutter_mobx:

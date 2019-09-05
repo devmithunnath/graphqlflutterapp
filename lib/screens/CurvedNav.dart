@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import './Home.dart';
 import './Favourites.dart';
 import './Search.dart';
+import './TimeLine.dart';
 
 class CurvedNav extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _CurvedNavState extends State<CurvedNav> {
     Home(),
     Favourites(),
     Search(),
+    YearTimeline(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -37,6 +39,7 @@ class _CurvedNavState extends State<CurvedNav> {
           Icon(Icons.home, size: 30, color: Colors.white,),
           Icon(Icons.search, size: 30, color: Colors.white,),
           Icon(Icons.bookmark, size: 30, color: Colors.white,),
+          Icon(Icons.bookmark, size: 30, color: Colors.white,),
         ],
         onTap: (index) {
           //Handle button tap
@@ -48,6 +51,8 @@ class _CurvedNavState extends State<CurvedNav> {
               currentScreen = Search();
             } else if( currentTab == 2 ) {
               currentScreen = Favourites();
+            } else if( currentTab == 3 ) {
+              currentScreen = YearTimeline();
             }
           });
         },

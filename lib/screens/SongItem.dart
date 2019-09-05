@@ -15,11 +15,9 @@ class SongItem extends StatelessWidget {
   final String songId;
 
   //final dynamic getSongDetails = queries.getSongDetailsMA;
-  final Language lang = Language();
 
   @override
   Widget build(BuildContext context) {
-
     final dynamic getSongDetailsEN = '''
       query getSongDetailsMA {
         song(id: "$songId") {
@@ -222,25 +220,13 @@ class SongItem extends StatelessWidget {
               SizedBox(
                 height: 20.0,
               ),
-              Observer(
-                  builder: (_) => (lang.lang == 'en') 
-                  ? Text('en')
-                  : Text('ma'),
-              ),
-                      // ? (songTitleEN != 'EMPTY')
-                      //     ? Heading(
-                      //         title: 'Song: ' + songTitleEN,
-                      //         align: TextAlign.left,
-                      //         padding: titlePadding,
-                      //       )
-                      //     : Container()
-                      // : (songTitleMA != 'EMPTY')
-                      //     ? Heading(
-                      //         title: 'Song: ' + songTitleMA,
-                      //         align: TextAlign.left,
-                      //         padding: titlePadding,
-                      //       )
-                      //     : Container())),
+              (songTitleEN != 'EMPTY')
+                  ? Heading(
+                      title: 'Song: ' + songTitleEN,
+                      align: TextAlign.left,
+                      padding: titlePadding,
+                    )
+                  : Container(),
               (movieName != 'EMPTY')
                   ? Heading(
                       title: 'Movie: ' + movieName,

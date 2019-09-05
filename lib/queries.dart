@@ -55,3 +55,18 @@ const getSongDetailsMA = '''
     }
   }
 ''';
+
+// Get all years 
+
+const getAllYears = '''
+  query getAllYears {
+    years{
+      edges{
+        node{
+          title
+          id
+        }
+      }
+    }
+  }
+''';

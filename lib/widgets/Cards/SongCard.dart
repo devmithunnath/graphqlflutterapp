@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import './../../screens/SongItem.dart';
 
-class ThumbnailCard extends StatefulWidget {
+class SongCard extends StatefulWidget {
   final String image;
   final String name;
   final String id;
-  const ThumbnailCard({this.name, this.image, this.id});
+  final String tagID;
+  const SongCard({this.name, this.image, this.id, this.tagID});
 
-  _ThumbnailCardState createState() => _ThumbnailCardState();
+  _SongCardState createState() => _SongCardState();
 }
 
-class _ThumbnailCardState extends State<ThumbnailCard> {
+class _SongCardState extends State<SongCard> {
 
   ImageProvider backgroundImage;
 
@@ -24,7 +25,7 @@ class _ThumbnailCardState extends State<ThumbnailCard> {
   @override
   Widget build(BuildContext context) {
 
-    String heroTag = widget.name + widget.id;
+    String heroTag = widget.tagID + widget.name + widget.id;
 
     return InkWell(
       onTap: () {

@@ -1,23 +1,20 @@
 // Packages
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../Cards/ThumbnailCard.dart';
+import '../Cards/SongCard.dart';
 import '../../queries.dart' as queries;
 
-class SongsCarousel extends StatefulWidget {
+class LatestSongsCarousel extends StatefulWidget {
 
-  final String title;
-  final bool featured;
-  final bool all;
-  final String year;
+  final String tagID;
 
-  SongsCarousel({ this.title, this.featured, this.all, this.year });
+  LatestSongsCarousel({ this.tagID });
 
   @override
-  _SongsCarouselState createState() => _SongsCarouselState();
+  _LatestSongsCarouselState createState() => _LatestSongsCarouselState();
 }
 
-class _SongsCarouselState extends State<SongsCarousel> {
+class _LatestSongsCarouselState extends State<LatestSongsCarousel> {
 
   final dynamic testQuery = queries.getAllSongsEN; 
   
@@ -53,10 +50,11 @@ class _SongsCarouselState extends State<SongsCarousel> {
                 final String name = pl["node"]["songDetails"]["nameEnglish"];
                 final String image = pl["node"]["songDetails"]["coverImageMobile"]["sourceUrl"];
                 final String id = pl["node"]["id"];
-                return new ThumbnailCard(
+                return new SongCard(
                   image: image,
                   name: name,
                   id: id,
+                  tagID: widget.tagID,
                 );
 
               },

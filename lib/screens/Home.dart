@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 //Widgets
 import 'package:graphqlapp/widgets/Header.dart';
 import './../widgets/Texts/Heading.dart';
-import './../widgets/Carousels/Songs.dart';
+import './../widgets/Carousels/LatestSongs.dart';
 import './../widgets/TileNav.dart';
 import './../widgets/TestCard.dart';
 
@@ -18,8 +18,23 @@ class Home extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           children: <Widget>[
             TileNav(),
-            Heading(title: 'Latest Songs', align: TextAlign.left,),
-            SongsCarousel(),
+            SizedBox(height: 30),
+            Heading(
+              title: 'Latest Songs',
+              align: TextAlign.left,
+              padding: EdgeInsets.only(left: 10),
+            ),
+            SizedBox(height: 10),
+            LatestSongsCarousel(tagID: 'latest',),
+            SizedBox(height: 30),
+            Heading(
+              title: 'Latest Movies',
+              align: TextAlign.left,
+              padding: EdgeInsets.only(left: 10),
+            ),
+            SizedBox(height: 10),
+            LatestSongsCarousel(tagID: 'latest1',),
+            SizedBox(height: 30),
           ],
         ));
   }
