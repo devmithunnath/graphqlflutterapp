@@ -60,9 +60,9 @@ const getSongDetailsMA = '''
 
 const getAllYears = '''
   query getAllYears {
-    years{
-      edges{
-        node{
+    years(where: {orderby: {field: DATE, order: ASC}}) {
+      edges {
+        node {
           title
           id
         }

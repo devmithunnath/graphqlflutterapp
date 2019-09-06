@@ -39,7 +39,7 @@ class _CurvedNavState extends State<CurvedNav> {
           Icon(Icons.home, size: 30, color: Colors.white,),
           Icon(Icons.search, size: 30, color: Colors.white,),
           Icon(Icons.bookmark, size: 30, color: Colors.white,),
-          Icon(Icons.bookmark, size: 30, color: Colors.white,),
+          Icon(Icons.timeline, size: 30, color: Colors.white,),
         ],
         onTap: (index) {
           //Handle button tap
