@@ -7,11 +7,11 @@ The first version of this app was built using Ionic 2 and Angular 4.
 
 ## Version One Screenshots
 
-![alt text](/screenshots/Screenshot_01)
-![alt text](/screenshots/Screenshot_02)
-![alt text](/screenshots/Screenshot_03)
-![alt text](/screenshots/Screenshot_04)
-![alt text](/screenshots/Screenshot_05)
+![alt text](./screenshots/Screenshot_01.jpg)
+![alt text](./screenshots/Screenshot_02.jpg)
+![alt text](./screenshots/Screenshot_03.jpg)
+![alt text](./screenshots/Screenshot_04.jpg)
+![alt text](./screenshots/Screenshot_05.jpg)
 
 
 
