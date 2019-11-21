@@ -48,7 +48,9 @@ class _LatestSongsCarouselState extends State<LatestSongsCarousel> {
               itemBuilder: (BuildContext context, int index){
                 final Map<String, dynamic> pl = pls[index];
                 final String name = pl["node"]["songDetails"]["nameEnglish"];
-                final String image = pl["node"]["songDetails"]["coverImageMobile"]["sourceUrl"];
+                final String image = pl["node"]["songDetails"]["coverImageMobile"]["sourceUrl"] != null 
+                  ? pl["node"]["songDetails"]["coverImageMobile"]["sourceUrl"]
+                  : 'empty';
                 final String id = pl["node"]["id"];
                 return new SongCard(
                   image: image,

@@ -17,7 +17,9 @@ class _SongCardState extends State<SongCard> {
 
   @override
   void didChangeDependencies() async{
-    backgroundImage = NetworkImage(widget.image);
+    backgroundImage = widget.image != 'empty' 
+      ? NetworkImage(widget.image)
+      : NetworkImage('http://via.placeholder.com/350x150');
     await precacheImage(backgroundImage,context);
     super.didChangeDependencies();
   }

@@ -17,8 +17,8 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           physics: const AlwaysScrollableScrollPhysics(),
           children: <Widget>[
-            TileNav(),
-            SizedBox(height: 30),
+            // TileNav(),
+            // SizedBox(height: 30),
             Heading(
               title: 'Latest Songs',
               align: TextAlign.left,
@@ -27,14 +27,14 @@ class Home extends StatelessWidget {
             SizedBox(height: 10),
             LatestSongsCarousel(tagID: 'latest',),
             SizedBox(height: 30),
-            Heading(
-              title: 'Latest Movies',
-              align: TextAlign.left,
-              padding: EdgeInsets.only(left: 10),
-            ),
-            SizedBox(height: 10),
-            LatestSongsCarousel(tagID: 'latest1',),
-            SizedBox(height: 30),
+            // Heading(
+            //   title: 'Latest Movies',
+            //   align: TextAlign.left,
+            //   padding: EdgeInsets.only(left: 10),
+            // ),
+            // SizedBox(height: 10),
+            // LatestSongsCarousel(tagID: 'latest1',),
+            // SizedBox(height: 30),
           ],
         ));
   }

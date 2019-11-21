@@ -1,16 +1,18 @@
-# graphqlapp
+# Lyrichords v2
+Lyrichords is a music library that connects with a GraphQL server to get real time music data such as lyrics, songs, etc
 
-A new Flutter application.
+Here is a link to the version one: https://play.google.com/store/apps/details?id=com.lyrichords.malayalam&hl=en
 
-## Getting Started
+The first version of this app was built using Ionic 2 and Angular 4.
 
-This project is a starting point for a Flutter application.
+## Version One Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+![alt text](/screenshots/Screenshot_01)
+![alt text](/screenshots/Screenshot_02)
+![alt text](/screenshots/Screenshot_03)
+![alt text](/screenshots/Screenshot_04)
+![alt text](/screenshots/Screenshot_05)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
