@@ -7,7 +7,7 @@ The first version of this app was built using Ionic 2 and Angular 4.
 
 ## Version One Screenshots
 
-![Home Screen](./screenshots/Screenshot_01.jpg =250x) 
+![Home Screen](./screenshots/Screenshot_01.jpg) <!-- .element width="250px" -->
 ![Settings - Language Switch](./screenshots/Screenshot_02.jpg =250x)
 ![Song Details with Thumbnail](./screenshots/Screenshot_03.jpg =250x)
 ![Song Details without Thumbnail](./screenshots/Screenshot_04.jpg =250x)
